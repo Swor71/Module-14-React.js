@@ -1,20 +1,17 @@
 var Counter = React.createClass({
+
+    getDefaultProps() {
+        console.log('Gdy nie ustalimy żadnych propsów');
+    },
+
     getInitialState: function() {
         return {
             counter: 0
         };
     },
 
-    increment: function() {
-        this.setState({
-            counter: this.state.counter + 1
-        });
-    },
-
-    decrement: function() {
-        this.setState({
-            counter: this.state.counter - 1
-        });
+    componentWillMount() {
+        console.log('Przygotowanie do renderowania');
     },
 
     render: function() {
@@ -26,6 +23,44 @@ var Counter = React.createClass({
             ),
             React.createElement('button', { onClick: this.increment, className: 'btn-add' }, '+')
         );
+    },
+
+    componentDidMount() {
+        console.log('Po zamontowaniu');
+    },
+
+    componentWillReceiveProps() {
+        console.log('Gdy komponent otrzymuje nowe właściwości');
+    },
+
+    // Wywala błąd o boolean, dlatego w commencie
+    //
+    // shouldComponentUpdate() {
+    //     console.log('boolean czy komponent powinien się przeładować na podstawie poprzedniej metody');
+    // },
+
+    componentWillUpdate() {
+        console.log('przygotowanie do zmian');
+    },
+
+    componentDidUpdate() {
+        console.log('po renderze i wprowadzeniu zmian');
+    },
+
+    componentWillUnmount() {
+        console.log('koniec działania modułu');
+    },
+
+    increment: function () {
+        this.setState({
+            counter: this.state.counter + 1
+        });
+    },
+
+    decrement: function () {
+        this.setState({
+            counter: this.state.counter - 1
+        });
     }
 });
 
